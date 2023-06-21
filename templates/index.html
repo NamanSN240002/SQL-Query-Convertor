@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Compilers Assignment</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="../static/style.css">
+
+</head>
+<body>
+
+    <div class ="container">
+        <h1 style="font-family: monospace;font-size:2.5rem">Enter your Query starting with 'Please' and ending with a fullstop following proper rules of English language:</h1>
+    </div>
+
+<div class="container">
+    
+  <form  method="POST" action="{{ url_for('query_handler') }}">
+    <div class="finder">
+      <div class="finder__outer">
+        <div class="finder__inner">
+          <div class="finder__icon" ref="icon"></div>
+          <input class="finder__input" type="text" name="query" />
+          <input type="submit" class="submitButton">
+        </div>
+      </div>
+    </div>
+  </form>
+</form>
+
+{% if display == 'True'%}
+    <div style="position: absolute;top: 30%;">
+      <div class="finder">
+        <div class="finder__outer">
+         <div class="finder__inner">
+           <span style="font-family:monospace;font-size:1.5rem">Output : {{output}}</span> 
+         </div>
+        </div>
+      </div>
+    </div>
+
+{% endif %}
+</div>
+
+{% if table == 'True' %}
+<div class="output">
+  <div class="container_output">
+  <table>
+    <thead>
+      <tr>
+        {% for column in columndetails %}
+        <td><span style="visibility: hidden">||</span>{{column[0]}}<span style="visibility: hidden">||</span></td>
+        {% endfor %}
+    </tr>
+    <thead>
+    <tbody>
+      <tr>
+        {% for column in columndetails %}
+        <td>-------</td>
+        {% endfor %}
+      </tr>
+      {% for row in viewdetails %}
+      <tr >
+            {% for column in row %}
+            <td><span style="visibility: hidden">||</span>{{column}}<span style="visibility: hidden">||</span></td>
+            {% endfor %}
+      </tr>
+      {% endfor %} 
+    </tbody>
+  </table>
+  </div>
+</div>
+{% endif %}
+  <script  src="../static/script.js"></script>
+
+</body>
+</html>
